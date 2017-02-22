@@ -16,7 +16,10 @@ copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 using namespace std;
 
 //------------------------------------------------------ Include personnel
+#include "e5.h"
 #include "e7.h"
+#include "expr.h"
+#include "exprplus.h"
 #include "caracteres.h"
 #include "automate.h"
 //---------------------------------------------------- Variables de classe
@@ -43,17 +46,40 @@ E7::~E7()
 
 bool E7::transition(Automate & automate,Symbole *s)
 {
-    automate.decalage(s,new E7);
-    /*
     int value = s->getInfo();
+    
     switch(value){
         case NUMBER:break;
-        case PLUS:break;
-        case MULT:break;
-        case O_PARENTH:break;
+        case PLUS:
+        {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s1,s2));
+            break;
+        }
+        case MULT:
+            automate.decalage(s,new E5);
+            break;
+        case O_PARENTH:
+        {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s1,s2));
+            break;
+        }
         case F_PARENTH:break;
         case EXPR:break;
+        default://EOF
+        {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprPlus(s1,s2));
+            break;
+        }
     }
-    */
+    
     return false;
 }

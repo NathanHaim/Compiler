@@ -40,6 +40,8 @@ class Automate {
         void decalage(Symbole * s,Etat *e);
         void reduction(int n,Symbole * s);
         void lecture();
+        Symbole* popSymbol();
+        void popAndDestroySymbol();
 
         //void automate::execute();
 
