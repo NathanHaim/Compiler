@@ -1,12 +1,12 @@
-SOURCES=main.cpp automate.cpp etat.cpp e0.cpp e1.cpp
-ENTETES=automate.h etat.h e0.h e1.h
+SOURCES=main.cpp lexer.cpp symbole.cpp expr.cpp plus.cpp mult.cpp number.cpp fermepar.cpp ouvrepar.cpp automate.cpp etat.cpp e0.cpp e1.cpp
+ENTETES=lexer.h symbole.h expr.h plus.h mult.h number.h fermepar.h ouvrepar.h automate.h etat.h e0.h e1.h
 
 CC = g++
 CFLAGS = -Wall
 EXEC_NAME = compiler
 INCLUDES =
 LIBS =
-OBJ_FILES = main.o automate.o etat.o e0.o e1.o
+OBJ_FILES = main.o lexer.o symbole.o expr.o plus.o mult.o number.o fermepar.o ouvrepar.o automate.o etat.o e0.o e1.o
 INSTALL_DIR =
 
 
