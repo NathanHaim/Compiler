@@ -45,7 +45,7 @@ Symbole* Lexer::getNext()
 {
 	if(this->lexed)
 	{
-		return this->stackSymbole.top();
+		return new Symbole( *(this->stackSymbole.top()));
 	}
 	else
 	{

@@ -27,7 +27,6 @@
 
 class OuvrePar : public Symbole {
     private:
-        int id;
 	
     protected: 
 

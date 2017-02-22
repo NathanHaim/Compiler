@@ -33,13 +33,13 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 //----- Constructeur
-Automate::Automate()
+Automate::Automate(lexer* lex):lexer(lex)
 {
     this->CurrentState = new E0();
-    cout << "Transition du Current State" << endl;
-    this->CurrentState->transition(*this,new Symbole(43));
-    this->CurrentState = new E1();
-    this->CurrentState->transition(*this,new Symbole(43));
+    //cout << "Transition du Current State" << endl;
+    //this->CurrentState->transition(*this,new Symbole(43));
+    //this->CurrentState = new E1();
+    //this->CurrentState->transition(*this,new Symbole(43));
     /*
     this->decalage(new E0);
     this->decalage(new E1);
@@ -69,6 +69,15 @@ void Automate::decalage(Symbole * s,Etat *e)
     this->CurrentState = e;
     cout << "Push State : " << e->toString() << endl;
     //cout << "Push Symbol : " << s->toString() << endl;
+}
+
+void Automate::lecture()
+{
+    Symbole* symb = NULL;
+    while( (symb = lexer->getNext()))
+    {
+        this->CurrentState->transition(*this,symb)
+    } 
 }
 
 void Automate::reduction(int n,Symbole *s)

@@ -27,7 +27,6 @@
 
 class Plus : public Symbole {
     private:
-        int id;
 	
     protected: 
 

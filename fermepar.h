@@ -27,7 +27,7 @@
 
 class FermePar : public Symbole {
     private:
-        int id;
+
 	
     protected: 
 

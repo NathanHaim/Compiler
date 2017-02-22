@@ -14,6 +14,7 @@ Automate.h  -  description
 
 #include <stack>
 #include "symbole.h"
+#include "lexer.h"
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------- Constantes
@@ -27,16 +28,18 @@ class Etat;
 class Automate {
 
     private:
+        lexer lexer;
         Etat * CurrentState; 
         std::stack<Symbole*> symbolStack; 
         std::stack<Etat*> statesStack;
 
     public:
-        Automate();
+        Automate(lexer* lex);
         ~Automate();
         void printCurrentState() const; // Debug function
         void decalage(Symbole * s,Etat *e);
         void reduction(int n,Symbole * s);
+        void lecture();
 
         //void automate::execute();
 
