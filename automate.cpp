@@ -87,4 +87,14 @@ void Automate::reduction(int n,Symbole *s)
     // DECOMENT AFTER
     //lexer -> putSymbol(s);
 }
+Symbole* Automate::popSymbol()
+{
+    Symbole * s = new Symbole(*(this->symbolStack.top()));
+    this->symbolStack.pop();
+    return s;
+}
 
+void Automate::popAndDestroySymbol()
+{
+    this->symbolStack.pop();
+}

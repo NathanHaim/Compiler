@@ -18,6 +18,7 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "e9.h"
 #include "caracteres.h"
+#include "expr.h"
 #include "automate.h"
 //---------------------------------------------------- Variables de classe
 
@@ -43,17 +44,40 @@ E9::~E9()
 
 bool E9::transition(Automate & automate,Symbole *s)
 {
-    automate.decalage(s,new E9);
-    /*
     int value = s->getInfo();
     switch(value){
         case NUMBER:break;
-        case PLUS:break;
-        case MULT:break;
+        case PLUS:
+        {
+            automate.popAndDestroySymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
+            int value = s1->getValue();
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new Expr(value));
+            break;
+        }
+        break;
+        case MULT:
+        {
+            automate.popAndDestroySymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
+            int value = s1->getValue();
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new Expr(value));
+            break;
+        }
         case O_PARENTH:break;
-        case F_PARENTH:break;
+        case F_PARENTH:
+        {
+            automate.popAndDestroySymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
+            int value = s1->getValue();
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new Expr(value));
+            break;
+        }
         case EXPR:break;
     }
-    */
+    
     return false;
 }

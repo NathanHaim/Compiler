@@ -17,6 +17,8 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "e8.h"
+#include "expr.h"
+#include "exprmult.h"
 #include "caracteres.h"
 #include "automate.h"
 //---------------------------------------------------- Variables de classe
@@ -44,16 +46,37 @@ E8::~E8()
 bool E8::transition(Automate & automate,Symbole *s)
 {
     automate.decalage(s,new E8);
-    /*
+    
     int value = s->getInfo();
     switch(value){
         case NUMBER:break;
-        case PLUS:break;
-        case MULT:break;
+        case PLUS:
+            {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s1,s2));
+            break;
+            }
+        case MULT:
+            {
+            Expr *s3 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s4 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s3,s4));
+            break;
+            }
         case O_PARENTH:break;
-        case F_PARENTH:break;
+        case F_PARENTH:
+            {
+            Expr *s5 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s6 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s1,s2));
+            break;
+            }
         case EXPR:break;
     }
-    */
+    
     return false;
 }
