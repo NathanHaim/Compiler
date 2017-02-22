@@ -60,22 +60,30 @@ bool E8::transition(Automate & automate,Symbole *s)
             }
         case MULT:
             {
-            Expr *s3 = (Expr*) automate.popSymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr *s4 = (Expr*) automate.popSymbol();
-            automate.reduction(3, new ExprMult(s3,s4));
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s1,s2));
             break;
             }
         case O_PARENTH:break;
         case F_PARENTH:
             {
-            Expr *s5 = (Expr*) automate.popSymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
-            Expr *s6 = (Expr*) automate.popSymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s1,s2));
             break;
             }
         case EXPR:break;
+        default://EOF
+        {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
+            automate.reduction(3, new ExprMult(s1,s2));
+            break;
+        }
     }
     
     return false;

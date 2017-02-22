@@ -77,6 +77,14 @@ bool E9::transition(Automate & automate,Symbole *s)
             break;
         }
         case EXPR:break;
+        {
+            automate.popAndDestroySymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
+            int value = s1->getValue();
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new Expr(value));
+            break;
+        }
     }
     
     return false;
