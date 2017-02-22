@@ -26,9 +26,10 @@
 
 class Symbole {
     private:
-        int id;
+
 	
     protected: 
+        int id;
 
     public:
 

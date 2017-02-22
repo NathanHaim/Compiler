@@ -8,7 +8,7 @@
 
 
 //---------- Interface de la classe Mult (fichier mult.h) ------
-#if ! defined ( MULT )
+#if ! defined ( MULT_H )
 #define MULT_H
 
 

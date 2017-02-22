@@ -1,12 +1,12 @@
 /************************************************************************/
-/* Class           : expr.cpp						*/
+/* Class           : ExprPlus.cpp						*/
 /* Description     : Represent an expression 		*/
 /* Depend of files : 							*/
 /* Date creation   : 21/02/2017						*/
 /* Authors         : Aparicio Christopher and Nathan Haim		*/
 /************************************************************************/
 
-//---------- Réalisation de la classe Expr (fichier expr.cpp) --
+//---------- Réalisation de la classe ExprPlus (fichier exprplus.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -16,7 +16,7 @@
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "expr.h"
+#include "exprplus.h"
 
 //---------------------------------------------------- Variables de classe
 

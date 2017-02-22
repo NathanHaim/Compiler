@@ -32,6 +32,5 @@ using namespace std;
 
 
 //----- Destructeur
-Number::~Number()
-{}// Bloc vide
+Number::~Number(){}// Bloc vide
 //----- Fin destructeur

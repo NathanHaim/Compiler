@@ -1,20 +1,23 @@
 /************************************************************************/
-/* Class           : number.h						*/
-/* Description     : Represent a number 		*/
+/* Class           : expr.h						*/
+/* Description     : Represent an expression 		*/
 /* Depend of files : 							*/
 /* Date creation   : 21/02/2017						*/
 /* Authors         : Aparicio Christopher and Nathan Haim		*/
 /************************************************************************/
 
 
-//---------- Interface de la classe Number (fichier number.h) ------
-#if ! defined ( NUMBER_H )
-#define NUMBER_H
+//---------- Interface de la classe Lexer (fichier Lexer.h) ------
+#if ! defined ( EXPR_H )
+#define EXPR_H
 
 
 
 //--------------------------------------------------- Interfaces utilisées
-#include "expr.h"
+#include "symbole.h"
+#include <map>
+#include <list>
+#include <string>
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------- Constantes
@@ -25,18 +28,21 @@
 
 //------------------------------------------------------------------------
 
-class Number : public Expr {
+class Expr : public Symbole {
     private:
 	
     protected: 
+    	double value;
 
     public:
 
-        Number(double val):Expr(val){};
+        Expr(double val):Symbole(EXPR),value(val) {};
         
-        virtual ~Number();
+        virtual ~Expr(){};
+
+        virtual double getValue(){ return value;}
 
 
 
 };
-#endif // if ! defined NUMBER_H
+#endif // if ! defined EXPR_H

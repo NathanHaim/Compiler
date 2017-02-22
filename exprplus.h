@@ -1,15 +1,15 @@
 /************************************************************************/
-/* Class           : number.h						*/
-/* Description     : Represent a number 		*/
+/* Class           : ExprPlus.h						*/
+/* Description     : Represent an addition 		*/
 /* Depend of files : 							*/
-/* Date creation   : 21/02/2017						*/
+/* Date creation   : 22/02/2017						*/
 /* Authors         : Aparicio Christopher and Nathan Haim		*/
 /************************************************************************/
 
 
-//---------- Interface de la classe Number (fichier number.h) ------
-#if ! defined ( NUMBER_H )
-#define NUMBER_H
+//---------- Interface de la classe ExprMult (fichier exprplus.h) ------
+#if ! defined ( EXPRPLUS_H )
+#define EXPRPLUS_H
 
 
 
@@ -25,18 +25,22 @@
 
 //------------------------------------------------------------------------
 
-class Number : public Expr {
+class ExprPlus : public Expr {
     private:
 	
     protected: 
 
     public:
 
-        Number(double val):Expr(val){};
+        ExprPlus(Expr* s1, Expr* s2 ):Expr(s1->getValue() + s2->getValue())
+        {
+            delete(s1);
+            delete(s2);
+        };
         
-        virtual ~Number();
+        virtual ~ExprPlus(){};
 
 
 
 };
-#endif // if ! defined NUMBER_H
+#endif // if ! defined EXPRPLUS_H
