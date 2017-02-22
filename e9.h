@@ -1,14 +1,14 @@
 /*************************************************************************
 TPComp
-E0.h  -  description
+E9.h  -  description
  -------------------
  début                : 15/02/2017
- copyright            : (C)2015 par FOLLEAS Jacques et SCHROTER Quentin
+ copyright            : (C)2015 par APARICIO Christopher et HAIM Nathan
  *************************************************************************/
 
-//---------- Interface de la classe E0 (fichier E0.h) ------
-#if ! defined ( E0_H )
-#define E0_H
+//---------- Interface de la classe E9 (fichier E9.h) ------
+#if ! defined ( E9_H )
+#define E9_H
 
 
 
@@ -19,20 +19,20 @@ E0.h  -  description
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------
-// Role de la classe E0:
+// Role de la classe E9:
 //
 
 //------------------------------------------------------------------------
 
-class E0 : public Etat {
+class E9 : public Etat {
 
     public:
 
-        E0();
+        E9();
         
-        virtual ~E0();
+        virtual ~E9();
 
         bool transition(Automate & automate,Symbole *s);
 
 };
-#endif // if ! defined E0_H
+#endif // if ! defined E9_H

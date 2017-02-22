@@ -1,12 +1,12 @@
 /*************************************************************************
 TPComp
-E1.cpp  -  description
+E2.cpp  -  description
 -------------------
 début                : 15/02/2017
 copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 *************************************************************************/
 
-//---------- Réalisation de la classe E1 (fichier E1.cpp) --
+//---------- Réalisation de la classe E2 (fichier E2.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -16,9 +16,9 @@ copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 using namespace std;
 
 //------------------------------------------------------ Include personnel
-#include "e1.h"
-#include "e4.h"
-#include "e5.h"
+#include "e2.h"
+#include "e3.h"
+#include "e6.h"
 #include "caracteres.h"
 #include "automate.h"
 //---------------------------------------------------- Variables de classe
@@ -32,32 +32,34 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 //----- Constructeur
-E1::E1():Etat("E1")
+E2::E2():Etat("E2")
 {}
 //----- Fin constructeur
 
 //----- Destructeur
-E1::~E1()
+E2::~E2()
 {}// Bloc vide
 //----- Fin destructeur
 
 //----- Fonction de Transition
 
-bool E1::transition(Automate & automate,Symbole *s)
-{
-    
+bool E2::transition(Automate & automate,Symbole *s)
+{   
     int value = s->getInfo();
     switch(value){
-        case NUMBER:break;
-        case PLUS:
-            automate.decalage(s,new E4);
+        case NUMBER:
+            automate.decalage(s,new E3);
             break;
-        case MULT:
-            automate.decalage(s,new E5);
+        case PLUS:break;
+        case MULT:break;
+        case O_PARENTH:
+            automate.decalage(s,new E2);
             break;
-        case O_PARENTH:break;
         case F_PARENTH:break;
-        case EXPR:break;
+        case EXPR:
+            automate.decalage(s,new E6);
+            break;
     }
+    
     return false;
 }

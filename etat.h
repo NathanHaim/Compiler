@@ -13,8 +13,8 @@ Etat.h  -  description
 
 
 //--------------------------------------------------- Interfaces utilisées
-//#include "Symbole.h"
 #include <iostream>
+#include "symbole.h"
 
 //------------------------------------------------------------------------
 
@@ -40,7 +40,7 @@ class Etat{
 
         std::string toString() const; 
 
-        virtual bool transition(Automate & automate) = 0;
+        virtual bool transition(Automate & automate,Symbole *s) = 0;
 
 };
 #endif // if ! defined Etat_H

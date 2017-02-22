@@ -13,7 +13,7 @@ Automate.h  -  description
 //--------------------------------------------------- Interfaces utilisées
 
 #include <stack>
-
+#include "symbole.h"
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------- Constantes
@@ -28,15 +28,15 @@ class Automate {
 
     private:
         Etat * CurrentState; 
-        std::stack<Etat*> symbolStack; 
+        std::stack<Symbole*> symbolStack; 
         std::stack<Etat*> statesStack;
 
     public:
         Automate();
         ~Automate();
         void printCurrentState() const; // Debug function
-        void decalage(Etat *e);
-        void reduction(int n);
+        void decalage(Symbole * s,Etat *e);
+        void reduction(int n,Symbole * s);
 
         //void automate::execute();
 

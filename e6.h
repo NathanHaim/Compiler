@@ -1,14 +1,14 @@
 /*************************************************************************
 TPComp
-E0.h  -  description
+E6.h  -  description
  -------------------
  début                : 15/02/2017
- copyright            : (C)2015 par FOLLEAS Jacques et SCHROTER Quentin
+ copyright            : (C)2015 par APARICIO Christopher et HAIM Nathan
  *************************************************************************/
 
-//---------- Interface de la classe E0 (fichier E0.h) ------
-#if ! defined ( E0_H )
-#define E0_H
+//---------- Interface de la classe E6 (fichier E6.h) ------
+#if ! defined ( E6_H )
+#define E6_H
 
 
 
@@ -19,20 +19,20 @@ E0.h  -  description
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------------
-// Role de la classe E0:
+// Role de la classe E6:
 //
 
 //------------------------------------------------------------------------
 
-class E0 : public Etat {
+class E6 : public Etat {
 
     public:
 
-        E0();
+        E6();
         
-        virtual ~E0();
+        virtual ~E6();
 
         bool transition(Automate & automate,Symbole *s);
 
 };
-#endif // if ! defined E0_H
+#endif // if ! defined E6_H

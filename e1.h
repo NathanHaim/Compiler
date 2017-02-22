@@ -3,7 +3,7 @@ TPComp
 E1.h  -  description
  -------------------
  début                : 15/02/2017
- copyright            : (C)2015 par FOLLEAS Jacques et SCHROTER Quentin
+ copyright            : (C)2015 par APARICIO Christopher et HAIM Nathan
  *************************************************************************/
 
 //---------- Interface de la classe E1 (fichier E1.h) ------
@@ -13,8 +13,6 @@ E1.h  -  description
 
 
 //--------------------------------------------------- Interfaces utilisées
-//#include "Symbole.h"
-#include <iostream>
 #include "etat.h"
 //------------------------------------------------------------------------
 
@@ -34,7 +32,7 @@ class E1 : public Etat {
         
         virtual ~E1();
 
-        bool transition(Automate & automate);
+        bool transition(Automate & automate,Symbole *s);
 
 };
 #endif // if ! defined E1_H

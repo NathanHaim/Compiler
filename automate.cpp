@@ -37,9 +37,9 @@ Automate::Automate()
 {
     this->CurrentState = new E0();
     cout << "Transition du Current State" << endl;
-    this->CurrentState->transition(*this);
+    this->CurrentState->transition(*this,new Symbole(43));
     this->CurrentState = new E1();
-    this->CurrentState->transition(*this);
+    this->CurrentState->transition(*this,new Symbole(43));
     /*
     this->decalage(new E0);
     this->decalage(new E1);
@@ -62,30 +62,29 @@ void Automate::printCurrentState() const
     cout << "Current State : " << CurrentState->toString() << endl;
 }
 
-void Automate::decalage(Etat *e)
+void Automate::decalage(Symbole * s,Etat *e)
 {
     this->statesStack.push(e);
+    this->symbolStack.push(s);
     this->CurrentState = e;
     cout << "Push State : " << e->toString() << endl;
-    //this->symbolStack.push(s);
     //cout << "Push Symbol : " << s->toString() << endl;
 }
 
-void Automate::reduction(int n)
+void Automate::reduction(int n,Symbole *s)
 {
     for(int i=0;i < n;i++)
     {
-        cout << "Top State : " << this->statesStack.top()->toString() << endl;
+        //cout << "Top State : " << this->statesStack.top()->toString() << endl;
         // Delete the top of stack and pop
         delete(this->statesStack.top());
         this->statesStack.pop();
-
-        this->CurrentState = this ->statesStack.top();
-
         // Debug
-        cout << "Current State : " << this->CurrentState->toString() << endl;
-        cout << "Size : " << this->statesStack.size() <<endl;
+        //cout << "Current State : " << this->CurrentState->toString() << endl;
+        //cout << "Size : " << this->statesStack.size() <<endl;
     }
+    this->CurrentState = this ->statesStack.top();
+    // DECOMENT AFTER
     //lexer -> putSymbol(s);
 }
 

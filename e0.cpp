@@ -1,25 +1,24 @@
 /*************************************************************************
 TPComp
-Automate.cpp  -  description
+E0.cpp  -  description
 -------------------
 début                : 15/02/2017
 copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 *************************************************************************/
 
-//---------- Réalisation de la classe Etat (fichier Etat.cpp) --
+//---------- Réalisation de la classe E0 (fichier E0.cpp) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-#include <iostream>
-
-using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "e0.h"
-#include "automate.h"
+#include "e1.h"
+#include "e2.h"
+#include "e3.h"
 #include "caracteres.h"
-
+#include "automate.h"
 //---------------------------------------------------- Variables de classe
 
 //----------------------------------------------------------- Types privés
@@ -42,20 +41,23 @@ E0::~E0()
 
 //----- Fonction de Transition
 
-bool E0::transition(Automate & automate)
+bool E0::transition(Automate & automate,Symbole *s)
 {
-    /*
-    int value = 0;
+    
+    
+    int value = s->getInfo();
     switch(value){
         case NUMBER:
-        case PLUS:
-        case MULT:
+            automate.decalage(s,new E3);
+        break;
+        case PLUS:break;
+        case MULT:break;
         case O_PARENTH:
-        case F_PARENTH:
-        case EXPR:
+            automate.decalage(s,new E2);
+        break;
+        case F_PARENTH:break;
+        case EXPR:break;
+            automate.decalage(s,new E1);
     }
-    */
-    automate.decalage(this);
-
     return false;
 }
