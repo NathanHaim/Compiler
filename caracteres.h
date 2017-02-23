@@ -17,6 +17,7 @@ const int MULT = 42;
 const int PLUS = 43;
 const int EXPR = 44;
 const int NUMBER = 45;
+const int END = 46;
 
 
 #endif // if ! defined CARACTERES_H

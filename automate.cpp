@@ -75,7 +75,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while((symb = lexer->getNext()) != NULL && (this->CurrentState->toString() != "E1"))
+    while((symb = lexer->getNext()) != NULL || (this->CurrentState->toString() != "E1"))
     {
         if(lexer->getNext() != NULL)
         {
@@ -88,6 +88,7 @@ void Automate::lecture()
         {
             this->CurrentState->transition(*this,symb);
         }
+        cout << "actual states : " << this->CurrentState->toString() << endl;
         
     }
     cout << "End of While" << endl;
@@ -139,3 +140,4 @@ void Automate::popAndDestroySymbol()
 {
     this->symbolStack.pop();
 }
+
