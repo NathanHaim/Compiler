@@ -75,7 +75,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while((symb = lexer->getNext()) != NULL)
+    while( ((symb = lexer->getNext()) != NULL) && this->CurrentState->toString() != "E1")
     {
         lexer->next();
         cout << symb->getInfo() << endl;
