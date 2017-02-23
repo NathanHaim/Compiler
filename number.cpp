@@ -28,8 +28,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
-
+Number* Number::clone()
+{
+	return new Number(*this);
+}
 
 //----- Destructeur
 Number::~Number(){}// Bloc vide

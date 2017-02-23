@@ -29,7 +29,10 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-
+Symbole* Symbole::clone()
+{
+	return new Symbole(*this);
+}
 
 
 

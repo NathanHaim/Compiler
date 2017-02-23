@@ -41,6 +41,8 @@ class Expr : public Symbole {
 
         virtual double getValue(){ return value;}
 
+        virtual Expr*  clone();
+
 
 
 };

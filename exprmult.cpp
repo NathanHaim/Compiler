@@ -29,7 +29,10 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-
+ExprMult* ExprMult::clone()
+{
+	return new ExprMult(*this);
+}
 
 //----- Destructeur
 // Bloc vide

@@ -29,7 +29,10 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-
+End* End::clone()
+{
+	return new End(*this);
+}
 
 //----- Destructeur
 End::~End()

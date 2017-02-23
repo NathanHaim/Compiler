@@ -28,7 +28,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
+Plus* Plus::clone()
+{
+	return new Plus(*this);
+}
 
 
 //----- Destructeur

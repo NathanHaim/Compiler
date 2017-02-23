@@ -36,6 +36,8 @@ class OuvrePar : public Symbole {
         
         virtual ~OuvrePar();
 
+        virtual OuvrePar*  clone();
+
 
 
 };

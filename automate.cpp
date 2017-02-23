@@ -74,7 +74,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 {
     cout << "Automate::decalage - New Etat : " << e->toString()  << ", New Symbole : " << s->getInfo() << endl;
     this->statesStack.push(e);
-    this->symbolStack.push(s);
+    this->symbolStack.push(s->clone());
     this->CurrentState = e;
     this->lexer->next();
 }

@@ -36,6 +36,9 @@ class Number : public Expr {
         
         virtual ~Number();
 
+        virtual Number*  clone();
+
+
 
 
 };

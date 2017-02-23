@@ -28,7 +28,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
+Mult* Mult::clone()
+{
+	return new Mult(*this);
+}
 
 
 //----- Destructeur
