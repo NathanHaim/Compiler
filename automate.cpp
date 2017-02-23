@@ -82,8 +82,11 @@ void Automate::lecture()
         cout << symb->getInfo() << endl;
         this->CurrentState->transition(*this,symb);
     }
-    if(this->symbolStack.top()->getInfo() == EXPR)
+    cout << "sort"<< endl;
+    if((this->symbolStack.top())->getInfo() == EXPR)
     {
+
+        cout << "iii" << endl;
         cout << ((Expr*)this->symbolStack.top())->getValue();
     }
     else

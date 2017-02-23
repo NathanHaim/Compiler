@@ -32,7 +32,7 @@ class Number : public Expr {
 
     public:
 
-        Number(double val):Expr(val){};
+        Number(double val):Expr(val){ id = NUMBER; };
         
         virtual ~Number();
 
