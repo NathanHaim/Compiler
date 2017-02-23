@@ -16,7 +16,9 @@ copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 using namespace std;
 
 //------------------------------------------------------ Include personnel
+#include "e2.h"
 #include "e3.h"
+#include "e6.h"
 #include "caracteres.h"
 #include "automate.h"
 //---------------------------------------------------- Variables de classe
@@ -45,12 +47,18 @@ bool E3::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
     switch(value){
-        case NUMBER:break;
+        case NUMBER:
+            automate.decalage(s,new E3);
+            break;
         case PLUS:break;
         case MULT:break;
-        case O_PARENTH:break;
+        case O_PARENTH:
+            automate.decalage(s,new E2);
+            break;
         case F_PARENTH:break;
-        case EXPR:break;
+        case EXPR:
+            automate.decalage(s,new E6);
+            break;
     }
     return false;
 }
