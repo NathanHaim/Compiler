@@ -65,6 +65,7 @@ void Automate::printCurrentState() const
 
 void Automate::decalage(Symbole * s,Etat *e)
 {
+    this->lexer->next();
     this->statesStack.push(e);
     this->symbolStack.push(s);
     this->CurrentState = e;
@@ -77,6 +78,8 @@ void Automate::lecture()
     Symbole* symb = NULL;
     while( (symb = lexer->getNext()) != NULL)
     {
+        lexer->next();
+        cout << symb->getInfo() << endl;
         this->CurrentState->transition(*this,symb);
     }
     if(this->symbolStack.top()->getInfo() == EXPR)
@@ -87,7 +90,6 @@ void Automate::lecture()
     {
         cout << "err";
     }
-    
 }
 
 void Automate::reduction(int n,Symbole *s)
@@ -103,8 +105,7 @@ void Automate::reduction(int n,Symbole *s)
         //cout << "Size : " << this->statesStack.size() <<endl;
     }
     this->CurrentState = this ->statesStack.top();
-    // DECOMENT AFTER
-    //lexer -> putSymbol(s);
+    lexer -> putSymbol(s);
 }
 Symbole* Automate::popSymbol()
 {

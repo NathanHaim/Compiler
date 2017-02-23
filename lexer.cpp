@@ -133,6 +133,11 @@ void Lexer::playLexer()
 }
 
 
+void Lexer::putSymbol(Symbole* s)
+{
+	this->stackSymbole.push(s);
+}
+
 
 //----- Destructeur
 Lexer::~Lexer()
