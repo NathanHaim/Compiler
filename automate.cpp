@@ -65,39 +65,48 @@ void Automate::printCurrentState() const
 
 void Automate::decalage(Symbole * s,Etat *e)
 {
+    cout << "Automate::decalage - New Etat : " << e->toString()  << ", New Symbole : " << s->getInfo() << endl;
     this->lexer->next();
     this->statesStack.push(e);
     this->symbolStack.push(s);
     this->CurrentState = e;
-    cout << "Push State : " << e->toString() << endl;
-    //cout << "Push Symbol : " << s->toString() << endl;
 }
 
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while( (symb = lexer->getNext()) != NULL)
+    while((symb = lexer->getNext()) != NULL)
     {
         lexer->next();
         cout << symb->getInfo() << endl;
-        cout << "Transition" << endl; 
+        cout << "Automatte::lecture - Transition" << endl; 
         this->CurrentState->transition(*this,symb);
     }
     cout << "End of While" << endl;
+    if(this->CurrentState->toString() != "E1")
+    {
+        cout << "Reduction A Faire" <<endl;
+    }
+    else
+    {
+        cout << "E1 Finished" << endl;
+    }
+    /*
     if(this->symbolStack.top()->getInfo() == EXPR)
     {
-
-        cout << "iii" << endl;
+        cout << "End EXPR" << endl;
         cout << ((Expr*)this->symbolStack.top())->getValue();
     }
     else
     {
-        cout << "err";
+        cout << "ERR" << endl;
     }
+    */
 }
 
 void Automate::reduction(int n,Symbole *s)
 {
+    cout << "Automate::reduction - n : " << n  << " Symbole : " << s->getInfo() << endl;
     for(int i=0;i < n;i++)
     {
         //cout << "Top State : " << this->statesStack.top()->toString() << endl;

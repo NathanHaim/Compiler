@@ -48,17 +48,32 @@ bool E3::transition(Automate & automate,Symbole *s)
     int value = s->getInfo();
     switch(value){
         case NUMBER:
-            automate.decalage(s,new E3);
+            {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new Expr(s1->getValue()));
             break;
+            }
         case PLUS:break;
         case MULT:break;
         case O_PARENTH:
-            automate.decalage(s,new E2);
+            {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new Expr(s1->getValue()));
             break;
+            }
         case F_PARENTH:break;
         case EXPR:
-            automate.decalage(s,new E6);
+            {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new Expr(s1->getValue()));
             break;
+            }
+        default://EOF
+            {
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.reduction(1, new Expr(s1->getValue()));
+            break;
+            }
     }
     return false;
 }
