@@ -47,27 +47,27 @@ bool E3::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
     switch(value){
-        case NUMBER:
+        case NUMBER:break;
+        case PLUS:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
-        case PLUS:break;
-        case MULT:break;
-        case O_PARENTH:
+        case MULT:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
-        case F_PARENTH:break;
-        case EXPR:
+        case O_PARENTH:break;
+        case F_PARENTH:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
+        case EXPR:break;    
         default://EOF
             {
             Expr *s1 = (Expr*) automate.popSymbol();
