@@ -60,15 +60,15 @@ bool E7::transition(Automate & automate,Symbole *s)
         case MULT:
             automate.decalage(s,new E5);
             break;
-        case O_PARENTH:
-        {
+        case O_PARENTH:break;
+        case F_PARENTH:
+            {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
             Expr *s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprPlus(s1,s2));
             break;
-        }
-        case F_PARENTH:break;
+            }
         case EXPR:break;
         default://EOF
         {

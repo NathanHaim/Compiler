@@ -77,7 +77,6 @@ bool E9::transition(Automate & automate,Symbole *s)
         {
             automate.popAndDestroySymbol();
             Expr *s1 = (Expr*) automate.popSymbol();
-            int value = s1->getValue();
             automate.popAndDestroySymbol();
             automate.reduction(3, new Expr(s1->getValue()));
             break;
