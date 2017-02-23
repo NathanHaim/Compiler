@@ -37,6 +37,8 @@ class FermePar : public Symbole {
         
         virtual ~FermePar();
 
+        virtual FermePar*  clone();
+
 
 
 };

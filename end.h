@@ -36,6 +36,8 @@ class End : public Symbole {
         
         virtual ~End();
 
+        virtual End*  clone();
+
 
 
 };

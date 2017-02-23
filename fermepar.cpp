@@ -28,7 +28,10 @@ using namespace std;
 
 //----------------------------------------------------- Méthodes publiques
 
-
+FermePar* FermePar::clone()
+{
+	return new FermePar(*this);
+}
 
 
 //----- Destructeur

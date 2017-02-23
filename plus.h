@@ -36,6 +36,8 @@ class Plus : public Symbole {
         
         virtual ~Plus();
 
+        virtual Plus*  clone();
+
 
 
 };

@@ -29,7 +29,10 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 
 
-
+OuvrePar* OuvrePar::clone()
+{
+	return new OuvrePar(*this);
+}
 
 //----- Destructeur
 OuvrePar::~OuvrePar()

@@ -36,6 +36,8 @@ class Mult : public Symbole {
         
         virtual ~Mult();
 
+        virtual Mult*  clone();
+
 
 
 };

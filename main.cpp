@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include "automate.h"
+#include "number.h"
+
 using namespace std;
 
 int main()
@@ -13,4 +15,5 @@ int main()
 	automate->lecture();
 	cout << "Automate Finished" << endl;
 	return 0;
+
 }

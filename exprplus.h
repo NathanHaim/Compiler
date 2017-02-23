@@ -40,6 +40,8 @@ class ExprPlus : public Expr {
         
         virtual ~ExprPlus(){};
 
+        virtual ExprPlus*  clone();
+
 
 
 };

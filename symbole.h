@@ -43,6 +43,8 @@ class Symbole {
 
         int getInfo() const{ return id;}
 
+        virtual Symbole*  clone();
+
         //virtual  int operator<<() const{ return id;}
 
 };
