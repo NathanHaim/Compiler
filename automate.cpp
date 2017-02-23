@@ -75,31 +75,25 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while((symb = lexer->getNext()) != NULL || (this->CurrentState->toString() != "E1"))
+    while(((symb = lexer->getNext()) != NULL) || (this->CurrentState->toString() != "E1"))
     {
+        cout << "Before If of While" << endl;   
         if(lexer->getNext() != NULL)
         {
-            lexer->next();
-            cout << symb->getInfo() << endl;
             cout << "Automatte::lecture - Transition" << endl; 
+            lexer->next();
+            cout << symb->getInfo() << endl;        
             this->CurrentState->transition(*this,symb);
         }
         else
         {
+            cout << "Reduction : " << endl;
             this->CurrentState->transition(*this,symb);
         }
         cout << "actual states : " << this->CurrentState->toString() << endl;
         
     }
     cout << "End of While" << endl;
-    if(this->CurrentState->toString() != "E1")
-    {
-        cout << "Reduction A Faire" <<endl;
-    }
-    else
-    {
-        cout << "E1 Finished" << endl;
-    }
     /*
     if(this->symbolStack.top()->getInfo() == EXPR)
     {
