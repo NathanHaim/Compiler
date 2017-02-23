@@ -13,6 +13,8 @@ copyright            : (C)2017 par Aparicio Christopher et Haim Nathan
 //-------------------------------------------------------- Include système
 #include <iostream>
 #include <stack>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -22,6 +24,8 @@ using namespace std;
 #include "e0.h"
 #include "e1.h"
 #include "end.h"
+
+
 
 //---------------------------------------------------- Variables de classe
 
@@ -76,7 +80,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while(((symb = lexer->getNext()) != NULL) || strcomp((this->CurrentState->toString(),"E1")==0))
+    while(((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1")==0)
     {
         cout << "Before If of While" << endl;   
         if(lexer->getNext() != NULL)
