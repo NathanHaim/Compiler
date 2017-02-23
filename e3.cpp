@@ -46,6 +46,7 @@ E3::~E3()
 bool E3::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
+    cout << "E3::transition : info : " << s->getInfo() << endl;
     switch(value){
         case NUMBER:break;
         case PLUS:
