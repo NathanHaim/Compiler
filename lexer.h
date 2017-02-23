@@ -36,7 +36,7 @@
 class Lexer {
     private:
         std::stack<Symbole*> stackSymbole;
-        bool lexed = false;
+        bool lexed;
 	
     protected: 
 

@@ -37,7 +37,7 @@ using namespace std;
 //----- Constructeur
 Lexer::Lexer()
 {
-    
+    this->lexed = false;
 }
 //----- Fin constructeur
 
