@@ -75,7 +75,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while(((symb = lexer->getNext()) != NULL) || (this->CurrentState->toString() != "E1"))
+    while(((symb = lexer->getNext()) != NULL) || strcomp((this->CurrentState->toString(),"E1")==0))
     {
         cout << "Before If of While" << endl;   
         if(lexer->getNext() != NULL)
