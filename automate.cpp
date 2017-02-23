@@ -74,9 +74,13 @@ void Automate::decalage(Symbole * s,Etat *e)
 {
     cout << "Automate::decalage - New Etat : " << e->toString()  << ", New Symbole : " << s->getInfo() << endl;
     this->statesStack.push(e);
-    this->symbolStack.push(s->clone());
     this->CurrentState = e;
-    this->lexer->next();
+    if(s->getInfo() != 46)
+    {
+        // Move if s isn't EOF
+        this->symbolStack.push(s->clone());
+        this->lexer->next();
+    }
 }
 
 void Automate::lecture()
@@ -84,17 +88,21 @@ void Automate::lecture()
     Symbole* symb = NULL;
     while(((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
     { 
+        cout << "Size : " << lexer->getSize() << endl;
         if(lexer->getLexed())
         {
-            cout << "Size : " << lexer->getSize() << endl;
-            cout << "Automatte::lecture - Transition" << endl; 
-            cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
+            //cout << "Automatte::lecture - Transition" << endl; 
+            //cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
             this->CurrentState->transition(*this,symb);
+        }
+        else if(strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
+        {
+            cout << "Different E1 "<<endl;
+            this->CurrentState->transition(*this,new End());
         }
         else
         {
-            cout << "Reduction : " << endl;
-            this->CurrentState->transition(*this,new End());
+
         }
         cout << "Actual state : " << this->CurrentState->toString() << endl;
         
@@ -121,9 +129,9 @@ void Automate::reduction(int n,Symbole *s)
 }
 Expr* Automate::popSymbol()
 {
-    cout << "Size : " << symbolStack.size() << endl;
-    cout << this->symbolStack.top()->getInfo() <<endl;
-    cout << ((Expr*)this->symbolStack.top()) ->getValue()<<endl;
+    //cout << "Size : " << symbolStack.size() << endl;
+    //cout << this->symbolStack.top()->getInfo() <<endl;
+    cout << "Pop Value : " << ((Expr*)this->symbolStack.top()) ->getValue()<<endl;
     Expr * s = new Expr(*((Expr*)this->symbolStack.top()));
     this->symbolStack.pop();
     return s;
@@ -134,3 +142,22 @@ void Automate::popAndDestroySymbol()
     this->symbolStack.pop();
 }
 
+int Automate::sizeSymbolStack()
+{
+    return this->symbolStack.size();
+}
+
+void Automate::printSymbolStack()
+{
+    while(!(this->symbolStack.empty()))
+    {
+        Symbole * s = symbolStack.top();
+        cout << "Symbole : " << s->getInfo() <<endl;
+        if(s->getInfo() == 44)
+        {
+            cout << "Value : " << ((Expr*)s)->getValue() <<endl;
+        }
+        symbolStack.pop();
+
+    }
+}

@@ -144,6 +144,20 @@ int Lexer::getSize()
 {
 	return stackSymbole.size();
 }
+void Lexer::printStackSymbole()
+{
+	while(!(this->stackSymbole.empty()))
+    {
+        Symbole * s = stackSymbole.top();
+        cout << "Symbole : " << s->getInfo() <<endl;
+        if(s->getInfo() == 44)
+        {
+            cout << "Value : " << ((Expr*)s)->getValue() <<endl;
+        }
+        stackSymbole.pop();
+
+    }
+}
 //----- Destructeur
 Lexer::~Lexer()
 {}// Bloc vide

@@ -69,18 +69,23 @@ bool E8::transition(Automate & automate,Symbole *s)
         case O_PARENTH:break;
         case F_PARENTH:
             {
-            Expr *s2 = (Expr*) automate.popSymbol();
-            automate.popAndDestroySymbol();
             Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            Expr *s2 = (Expr*) automate.popSymbol();
             automate.reduction(3, new ExprMult(s1,s2));
             break;
             }
         case EXPR:break;
         default://EOF
         {
+            cout << "Reduction EOF" <<endl;
+            cout << "Symbol Stack Size : " << automate.sizeSymbolStack() << endl;
+            //automate.printSymbolStack();
             Expr *s1 = (Expr*) automate.popSymbol();
+            cout << "S1 : " << s1->getValue() << endl;
             automate.popAndDestroySymbol();
             Expr *s2 = (Expr*) automate.popSymbol();
+            cout << "S2 : " << s2->getValue() << endl;
             automate.reduction(3, new ExprMult(s1,s2));
             break;
         }

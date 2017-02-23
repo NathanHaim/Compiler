@@ -60,5 +60,7 @@ class Lexer {
 
         void print() const;
 
+        void printStackSymbole();
+
 };
 #endif // if ! defined LEXER_H

@@ -42,6 +42,8 @@ class Automate {
         void lecture();
         Expr* popSymbol();
         void popAndDestroySymbol();
+        int sizeSymbolStack();
+        void printSymbolStack();
 
         //void automate::execute();
 
