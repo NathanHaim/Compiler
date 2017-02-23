@@ -21,6 +21,7 @@ using namespace std;
 #include "etat.h"
 #include "e0.h"
 #include "e1.h"
+#include "end.h"
 
 //---------------------------------------------------- Variables de classe
 
@@ -88,7 +89,7 @@ void Automate::lecture()
         else
         {
             cout << "Reduction : " << endl;
-            this->CurrentState->transition(*this,symb);
+            this->CurrentState->transition(*this,new End());
         }
         cout << "actual states : " << this->CurrentState->toString() << endl;
         
