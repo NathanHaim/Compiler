@@ -85,6 +85,15 @@ bool E9::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new Expr(value));
             break;
         }
+        default://EOF
+        {
+            automate.popAndDestroySymbol();
+            Expr *s1 = (Expr*) automate.popSymbol();
+            automate.popAndDestroySymbol();
+            automate.reduction(3, new Expr(s1->getValue()));
+            break;
+        }
+
     }
     
     return false;
