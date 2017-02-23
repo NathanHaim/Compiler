@@ -77,10 +77,18 @@ void Automate::lecture()
     Symbole* symb = NULL;
     while((symb = lexer->getNext()) != NULL)
     {
-        lexer->next();
-        cout << symb->getInfo() << endl;
-        cout << "Automatte::lecture - Transition" << endl; 
-        this->CurrentState->transition(*this,symb);
+        if(lexer->getNext() != NULL)
+        {
+            lexer->next();
+            cout << symb->getInfo() << endl;
+            cout << "Automatte::lecture - Transition" << endl; 
+            this->CurrentState->transition(*this,symb);
+        }
+        else
+        {
+            this->CurrentState->transition(*this,symb);
+        }
+        
     }
     cout << "End of While" << endl;
     if(this->CurrentState->toString() != "E1")
