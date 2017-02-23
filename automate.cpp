@@ -86,33 +86,21 @@ void Automate::lecture()
     { 
         if(lexer->getLexed())
         {
+            cout << "Size : " << lexer->getSize() << endl;
             cout << "Automatte::lecture - Transition" << endl; 
-            cout << symb->getInfo() << endl;   
-            cout << ((Expr*)symb)->getValue() << endl;     
+            cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
             this->CurrentState->transition(*this,symb);
-            lexer->next();
         }
         else
         {
             cout << "Reduction : " << endl;
             this->CurrentState->transition(*this,new End());
         }
-        cout << "actual states : " << this->CurrentState->toString() << endl;
+        cout << "Actual state : " << this->CurrentState->toString() << endl;
         
     }
     cout << "End of While" << endl;
     cout << ((Expr*)symbolStack.top())->getValue() << endl;
-    /*
-    if(this->symbolStack.top()->getInfo() == EXPR)
-    {
-        cout << "End EXPR" << endl;
-        cout << ((Expr*)this->symbolStack.top())->getValue();
-    }
-    else
-    {
-        cout << "ERR" << endl;
-    }
-    */
 }
 
 void Automate::reduction(int n,Symbole *s)
@@ -128,13 +116,8 @@ void Automate::reduction(int n,Symbole *s)
         //cout << "Current State : " << this->CurrentState->toString() << endl;
         //cout << "Size : " << this->statesStack.size() <<endl;
     }
-    cout << "Hello" << endl;
-    cout << "Value Symbole : " << ((Expr*)s)->getValue() << endl;
     this->CurrentState = this->statesStack.top();
-    cout << "Hello" << endl;
     lexer->putSymbol(s);
-    cout << ((Expr*)lexer->getNext())->getValue() << endl;
-    cout << "Hello" << endl;
 }
 Expr* Automate::popSymbol()
 {

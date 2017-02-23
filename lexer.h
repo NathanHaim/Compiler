@@ -52,6 +52,8 @@ class Lexer {
 
         Symbole* getNext();
 
+        int getSize();
+
         int next();
         
         virtual ~Lexer();

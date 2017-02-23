@@ -46,7 +46,6 @@ bool E0::transition(Automate & automate,Symbole *s)
     int value = s->getInfo();
     switch(value){
         case NUMBER:
-            std::cout << "Number S : " << ((Number*)s)->getValue() << std::endl;
             automate.decalage(s,new E3);
         break;
         case PLUS:break;

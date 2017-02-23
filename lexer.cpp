@@ -45,7 +45,8 @@ Symbole* Lexer::getNext()
 {
 	if(this->lexed)
 	{
-		return (Expr*)this->stackSymbole.top();
+		return this->stackSymbole.top();
+		//return (Expr*)this->stackSymbole.top();
 		//return new Symbole( *(this->stackSymbole.top()));
 	}
 	else
@@ -87,7 +88,6 @@ void Lexer::playLexer()
 		}
 		if(c == TAB || c==SPACE || c==BACKSPACE)
 		{
-			cout << "on sort";
 			break;
 		}
 		else if ( c >= MIN_INT && c <= MAX_INT )//is int
@@ -106,8 +106,6 @@ void Lexer::playLexer()
 				}
 			}
 			this->stackSymbole.push(new Number(stoi(str)));
-			cout << "Adde : " << ((Expr*)this->stackSymbole.top())->getValue() << endl;
-			cout << "number add";	
 		}
 		else if (c == O_PARENTH || c == F_PARENTH || c== MULT || c == PLUS)
 		{	
@@ -119,10 +117,8 @@ void Lexer::playLexer()
 				case PLUS: this->stackSymbole.push(new Plus());break;
 			}
 			str= (char)c;
-			cout << "addition add";
 		}
 	}
-	cout << "sorti";
 	if(!this->stackSymbole.empty())
 	{
 		lexed = true;
@@ -131,9 +127,7 @@ void Lexer::playLexer()
 	{
 		lexed = false;
 	}
-	
 }
-
 
 void Lexer::putSymbol(Symbole* s)
 {
@@ -144,6 +138,11 @@ void Lexer::putSymbol(Symbole* s)
 bool Lexer::getLexed()
 {
 	return this->lexed;
+}
+
+int Lexer::getSize()
+{
+	return stackSymbole.size();
 }
 //----- Destructeur
 Lexer::~Lexer()
