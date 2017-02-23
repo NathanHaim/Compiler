@@ -45,7 +45,7 @@ E8::~E8()
 
 bool E8::transition(Automate & automate,Symbole *s)
 {
-    automate.decalage(s,new E8);
+   // automate.decalage(s,new E8);
     
     int value = s->getInfo();
     switch(value){
