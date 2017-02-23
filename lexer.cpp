@@ -37,7 +37,7 @@ using namespace std;
 //----- Constructeur
 Lexer::Lexer()
 {
-    this->lexed = false;
+    this->lexed = false;	
 }
 //----- Fin constructeur
 
@@ -77,8 +77,8 @@ void Lexer::playLexer()
 	string str;
 	int c;
 	std::ifstream is;
-	bool lastWasDigit = false;
-	while( c = getchar())
+	//Waning:bool lastWasDigit = false;
+	while((c = getchar()))
 	{
 		if(c==EOF)
 		{
@@ -92,7 +92,7 @@ void Lexer::playLexer()
 		else if ( c >= MIN_INT && c <= MAX_INT )//is int
 		{	
 			str = (char)c;	
-			while(c = cin.peek())
+			while((c = cin.peek()))
 			{
 				if( c >= MIN_INT && c <= MAX_INT)
 				{	
