@@ -52,6 +52,7 @@ bool E3::transition(Automate & automate,Symbole *s)
         case PLUS:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
+            cout << "S1 : " << s1->getValue() << endl;
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }

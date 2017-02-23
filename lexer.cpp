@@ -45,7 +45,8 @@ Symbole* Lexer::getNext()
 {
 	if(this->lexed)
 	{
-		return new Symbole( *(this->stackSymbole.top()));
+		return (Expr*)this->stackSymbole.top();
+		//return new Symbole( *(this->stackSymbole.top()));
 	}
 	else
 	{
@@ -105,6 +106,7 @@ void Lexer::playLexer()
 				}
 			}
 			this->stackSymbole.push(new Number(stoi(str)));
+			cout << "Adde : " << ((Expr*)this->stackSymbole.top())->getValue() << endl;
 			cout << "number add";	
 		}
 		else if (c == O_PARENTH || c == F_PARENTH || c== MULT || c == PLUS)
@@ -136,9 +138,13 @@ void Lexer::playLexer()
 void Lexer::putSymbol(Symbole* s)
 {
 	this->stackSymbole.push(s);
+	this->lexed = true;
 }
 
-
+bool Lexer::getLexed()
+{
+	return this->lexed;
+}
 //----- Destructeur
 Lexer::~Lexer()
 {}// Bloc vide

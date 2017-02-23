@@ -37,7 +37,6 @@ class Expr : public Symbole {
     public:
 
         Expr(double val):Symbole(EXPR),value(val) {};
-        
         virtual ~Expr(){};
 
         virtual double getValue(){ return value;}

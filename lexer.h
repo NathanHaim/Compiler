@@ -48,6 +48,8 @@ class Lexer {
 
         void playLexer();
 
+        bool getLexed();
+
         Symbole* getNext();
 
         int next();
