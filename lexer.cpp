@@ -82,10 +82,13 @@ void Lexer::playLexer()
 	{
 		if(c==EOF)
 		{
-
+			
+		}
+		if(c == TAB || c==SPACE || c==BACKSPACE)
+		{
+			cout << "on sort";
 			break;
 		}
-		else if(c == TAB || c==SPACE || c==BACKSPACE) {			cout << "end of file" << endl; break;}
 		else if ( c >= MIN_INT && c <= MAX_INT )//is int
 		{	
 			str = (char)c;	
@@ -102,10 +105,7 @@ void Lexer::playLexer()
 				}
 			}
 			this->stackSymbole.push(new Number(stoi(str)));
-			Symbole* s = this->stackSymbole.top();
-			cout << "get info : "  << s->getInfo()<< endl;
-			cout <<  str << endl;
-			
+			cout << "number add";	
 		}
 		else if (c == O_PARENTH || c == F_PARENTH || c== MULT || c == PLUS)
 		{	
@@ -117,10 +117,10 @@ void Lexer::playLexer()
 				case PLUS: this->stackSymbole.push(new Plus());break;
 			}
 			str= (char)c;
-			cout <<  str << endl;
+			cout << "addition add";
 		}
 	}
-	
+	cout << "sorti";
 	if(!this->stackSymbole.empty())
 	{
 		lexed = true;

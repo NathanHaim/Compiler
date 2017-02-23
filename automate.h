@@ -28,13 +28,13 @@ class Etat;
 class Automate {
 
     private:
-        lexer lexer;
+        Lexer* lexer;
         Etat * CurrentState; 
         std::stack<Symbole*> symbolStack; 
         std::stack<Etat*> statesStack;
 
     public:
-        Automate(lexer* lex);
+        Automate(Lexer* lex);
         ~Automate();
         void printCurrentState() const; // Debug function
         void decalage(Symbole * s,Etat *e);
