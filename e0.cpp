@@ -43,8 +43,6 @@ E0::~E0()
 
 bool E0::transition(Automate & automate,Symbole *s)
 {
-    
-    
     int value = s->getInfo();
     switch(value){
         case NUMBER:
@@ -56,8 +54,9 @@ bool E0::transition(Automate & automate,Symbole *s)
             automate.decalage(s,new E2);
         break;
         case F_PARENTH:break;
-        case EXPR:break;
+        case EXPR:
             automate.decalage(s,new E1);
+        break;
     }
     return false;
 }

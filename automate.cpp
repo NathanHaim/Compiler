@@ -80,8 +80,10 @@ void Automate::lecture()
     {
         lexer->next();
         cout << symb->getInfo() << endl;
+        cout << "Transition" << endl; 
         this->CurrentState->transition(*this,symb);
     }
+    cout << "End of While" << endl;
     if(this->symbolStack.top()->getInfo() == EXPR)
     {
         cout << ((Expr*)this->symbolStack.top())->getValue();

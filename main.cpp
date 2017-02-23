@@ -7,9 +7,10 @@ int main()
 {	
 	Lexer* l = new Lexer();
 	l->playLexer();
-	cout << "sortie Lexer" << endl;
+	cout << "Lexer Ready" << endl;
 	Automate* automate = new Automate(l);
-	cout << "zut" << endl;
+	cout << "Automate Ready" << endl;
 	automate->lecture();
+	cout << "Automate Finished" << endl;
 	return 0;
 }
