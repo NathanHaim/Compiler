@@ -2,6 +2,7 @@
 #include <iostream>
 #include "automate.h"
 #include "number.h"
+#include "ExprMult.h"
 
 using namespace std;
 

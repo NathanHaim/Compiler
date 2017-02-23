@@ -22,6 +22,7 @@
 #include "fermepar.h"
 #include "ouvrepar.h"
 #include <stack>
+#include <list>
 //------------------------------------------------------------------------
 
 //------------------------------------------------------------- Constantes
@@ -35,7 +36,7 @@
 
 class Lexer {
     private:
-        std::stack<Symbole*> stackSymbole;
+        std::list<Symbole*> stackSymbole;
         bool lexed;
 	
     protected: 

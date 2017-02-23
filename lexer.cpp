@@ -45,7 +45,7 @@ Symbole* Lexer::getNext()
 {
 	if(this->lexed)
 	{
-		return this->stackSymbole.top();
+		return this->stackSymbole.front();
 		//return (Expr*)this->stackSymbole.top();
 		//return new Symbole( *(this->stackSymbole.top()));
 	}
@@ -59,7 +59,7 @@ int Lexer::next()
 {
 	if(this->lexed)
 	{
-		this->stackSymbole.pop();
+		this->stackSymbole.pop_front();
 		if(this->stackSymbole.empty())
 		{
 			this->lexed = false;
@@ -105,16 +105,16 @@ void Lexer::playLexer()
 					break;
 				}
 			}
-			this->stackSymbole.push(new Number(stoi(str)));
+			this->stackSymbole.push_back(new Number(stoi(str)));
 		}
 		else if (c == O_PARENTH || c == F_PARENTH || c== MULT || c == PLUS)
 		{	
 			switch(c)
 			{
-				case O_PARENTH: this->stackSymbole.push(new OuvrePar());break;
-				case F_PARENTH: this->stackSymbole.push(new FermePar());break;
-				case MULT: this->stackSymbole.push(new Mult());break;
-				case PLUS: this->stackSymbole.push(new Plus());break;
+				case O_PARENTH: this->stackSymbole.push_back(new OuvrePar());break;
+				case F_PARENTH: this->stackSymbole.push_back(new FermePar());break;
+				case MULT: this->stackSymbole.push_back(new Mult());break;
+				case PLUS: this->stackSymbole.push_back(new Plus());break;
 			}
 			str= (char)c;
 		}
@@ -131,7 +131,7 @@ void Lexer::playLexer()
 
 void Lexer::putSymbol(Symbole* s)
 {
-	this->stackSymbole.push(s);
+	this->stackSymbole.push_front(s);
 	this->lexed = true;
 }
 
@@ -148,13 +148,13 @@ void Lexer::printStackSymbole()
 {
 	while(!(this->stackSymbole.empty()))
     {
-        Symbole * s = stackSymbole.top();
+        Symbole * s = stackSymbole.front();
         cout << "Symbole : " << s->getInfo() <<endl;
         if(s->getInfo() == 44)
         {
             cout << "Value : " << ((Expr*)s)->getValue() <<endl;
         }
-        stackSymbole.pop();
+        stackSymbole.pop_front();
 
     }
 }
