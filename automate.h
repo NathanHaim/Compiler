@@ -44,6 +44,7 @@ class Automate {
         void popAndDestroySymbol();
         int sizeSymbolStack();
         void printSymbolStack();
+        void printStatesStack();
 
         //void automate::execute();
 

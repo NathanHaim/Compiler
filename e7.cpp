@@ -47,7 +47,6 @@ E7::~E7()
 bool E7::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
-    
     switch(value){
         case NUMBER:break;
         case PLUS:
@@ -73,6 +72,8 @@ bool E7::transition(Automate & automate,Symbole *s)
         case EXPR:break;
         default://EOF
         {
+            //automate.printSymbolStack();
+            //automate.printStatesStack();
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
             Expr *s2 = (Expr*) automate.popSymbol();

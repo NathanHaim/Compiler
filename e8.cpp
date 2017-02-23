@@ -45,8 +45,6 @@ E8::~E8()
 
 bool E8::transition(Automate & automate,Symbole *s)
 {
-    automate.decalage(s,new E8);
-    
     int value = s->getInfo();
     switch(value){
         case NUMBER:break;
@@ -78,14 +76,11 @@ bool E8::transition(Automate & automate,Symbole *s)
         case EXPR:break;
         default://EOF
         {
-            cout << "Reduction EOF" <<endl;
-            cout << "Symbol Stack Size : " << automate.sizeSymbolStack() << endl;
             //automate.printSymbolStack();
+            //automate.printStatesStack();
             Expr *s1 = (Expr*) automate.popSymbol();
-            cout << "S1 : " << s1->getValue() << endl;
             automate.popAndDestroySymbol();
             Expr *s2 = (Expr*) automate.popSymbol();
-            cout << "S2 : " << s2->getValue() << endl;
             automate.reduction(3, new ExprMult(s1,s2));
             break;
         }

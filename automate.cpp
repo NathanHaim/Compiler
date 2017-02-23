@@ -95,14 +95,9 @@ void Automate::lecture()
             //cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
             this->CurrentState->transition(*this,symb);
         }
-        else if(strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
-        {
-            cout << "Different E1 "<<endl;
-            this->CurrentState->transition(*this,new End());
-        }
         else
         {
-
+            this->CurrentState->transition(*this,new End());
         }
         cout << "Actual state : " << this->CurrentState->toString() << endl;
         
@@ -149,6 +144,7 @@ int Automate::sizeSymbolStack()
 
 void Automate::printSymbolStack()
 {
+    cout << "SymbolStack : " << endl;
     while(!(this->symbolStack.empty()))
     {
         Symbole * s = symbolStack.top();
@@ -159,5 +155,15 @@ void Automate::printSymbolStack()
         }
         symbolStack.pop();
 
+    }
+}
+void Automate::printStatesStack()
+{
+    cout << "StatesStack : " << endl;
+    while(!(this->statesStack.empty()))
+    {
+        Etat * s = statesStack.top();
+        cout << "Etat : " << s->toString() <<endl;
+        statesStack.pop();
     }
 }
