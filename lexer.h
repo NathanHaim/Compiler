@@ -47,7 +47,7 @@ class Lexer {
 
         void putSymbol(Symbole* s);
 
-        void playLexer();
+        int playLexer();
 
         bool getLexed();
 

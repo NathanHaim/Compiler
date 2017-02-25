@@ -74,7 +74,7 @@ int Lexer::next()
 
 
 //----- playLexer
-void Lexer::playLexer()
+int Lexer::playLexer()
 {
 	string str;
 	int c;
@@ -118,14 +118,21 @@ void Lexer::playLexer()
 			}
 			str= (char)c;
 		}
+		else
+		{
+			this->stackSymbole.clear();
+			break;
+		}
 	}
 	if(!this->stackSymbole.empty())
 	{
 		lexed = true;
+		return 0;
 	}
 	else
 	{
 		lexed = false;
+		return -1;
 	}
 }
 
