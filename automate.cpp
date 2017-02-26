@@ -122,6 +122,19 @@ void Automate::lecture()
         //cout << "End of While" << endl;
         cout << "Result : " << ((Expr*)symbolStack.top())->getValue() << endl;
     }
+    // Clear
+    while(this->statesStack.size() != 0)
+    {
+        delete(this->statesStack.top());
+        this->statesStack.pop();
+    }
+    while(this->symbolStack.size() != 0)
+    {
+        delete(this->symbolStack.top());
+        this->symbolStack.pop();
+    }
+    //delete(this->lexer);
+    delete(this->CurrentState);
 }
 
 void Automate::reduction(int n,Symbole *s)

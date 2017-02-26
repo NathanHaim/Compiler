@@ -18,12 +18,13 @@ int main()
 		//cout << "Automate Ready" << endl;
 		automate->lecture();
 		cout << "Automate Finished" << endl;
+		delete(automate);
 
 	}
 	else
 	{
 		cout << "error analyse lexical" << endl;
 	}
-	
+	delete(l);
 	return 0;
 }
