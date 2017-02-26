@@ -60,7 +60,9 @@ bool E7::transition(Automate & automate,Symbole *s)
         case MULT:
             automate.decalage(s,new E5);
             break;
-        case O_PARENTH:break;
+        case O_PARENTH:
+            automate.setError(true);
+            break;
         case F_PARENTH:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
@@ -69,8 +71,10 @@ bool E7::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new ExprPlus(s1,s2));
             break;
             }
-        case EXPR:break;
-        default://EOF
+        case EXPR:
+            automate.setError(true);
+            break;
+        case END://EOF
         {
             //automate.printSymbolStack();
             //automate.printStatesStack();
@@ -80,6 +84,9 @@ bool E7::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new ExprPlus(s1,s2));
             break;
         }
+        default:
+            automate.setError(true);
+            break;
     }
     
     return false;

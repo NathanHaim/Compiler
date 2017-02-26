@@ -48,16 +48,30 @@ bool E1::transition(Automate & automate,Symbole *s)
     
     int value = s->getInfo();
     switch(value){
-        case NUMBER:break;
+        case NUMBER:
+            automate.setError(true);
+            break;
         case PLUS:
             automate.decalage(s,new E4);
             break;
         case MULT:
             automate.decalage(s,new E5);
             break;
-        case O_PARENTH:break;
-        case F_PARENTH:break;
-        case EXPR:break;
+        case O_PARENTH:
+            automate.setError(true);
+            break;
+        case F_PARENTH:
+            automate.setError(true);
+            break;
+        case EXPR:
+            automate.setError(true);
+            break;
+        case END:
+                std::cout << "Analyse Terminee" << std::endl;
+            break;
+        default:
+            automate.setError(true);
+            break;
     }
     return false;
 }

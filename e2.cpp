@@ -50,14 +50,26 @@ bool E2::transition(Automate & automate,Symbole *s)
         case NUMBER:
             automate.decalage(s,new E3);
             break;
-        case PLUS:break;
-        case MULT:break;
+        case PLUS:
+            automate.setError(true);
+            break;
+        case MULT:
+            automate.setError(true);
+            break;
         case O_PARENTH:
             automate.decalage(s,new E2);
             break;
-        case F_PARENTH:break;
+        case F_PARENTH:
+            automate.setError(true);
+            break;
         case EXPR:
             automate.decalage(s,new E6);
+            break;
+        case END:
+            automate.setError(true);
+            break;
+        default:
+            automate.setError(true);
             break;
     }
     

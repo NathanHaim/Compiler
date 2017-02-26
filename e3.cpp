@@ -47,7 +47,9 @@ bool E3::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
     switch(value){
-        case NUMBER: cout << "Erreur " << endl;break;
+        case NUMBER:
+            automate.setError(true);
+            break;
         case PLUS:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
@@ -60,20 +62,28 @@ bool E3::transition(Automate & automate,Symbole *s)
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
-        case O_PARENTH:break;
+        case O_PARENTH:
+            automate.setError(true);
+            break;
         case F_PARENTH:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
-        case EXPR:break;    
-        default://EOF
+        case EXPR:
+            automate.setError(true);
+            break;   
+        case END: //EOF
             {
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.reduction(1, new Expr(s1->getValue()));
             break;
             }
+            break;
+        default:
+            automate.setError(true);
+            break;
     }
     return false;
 }

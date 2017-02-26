@@ -47,7 +47,9 @@ bool E8::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
     switch(value){
-        case NUMBER:break;
+        case NUMBER:
+            automate.setError(true);
+            break;
         case PLUS:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
@@ -64,7 +66,9 @@ bool E8::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new ExprMult(s1,s2));
             break;
             }
-        case O_PARENTH:break;
+        case O_PARENTH:
+            automate.setError(true);
+            break;
         case F_PARENTH:
             {
             Expr *s1 = (Expr*) automate.popSymbol();
@@ -73,8 +77,10 @@ bool E8::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new ExprMult(s1,s2));
             break;
             }
-        case EXPR:break;
-        default://EOF
+        case EXPR:
+            automate.setError(true);
+            break;
+        case END://EOF
         {
             //automate.printSymbolStack();
             //automate.printStatesStack();
@@ -84,6 +90,9 @@ bool E8::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new ExprMult(s1,s2));
             break;
         }
+        default:
+            automate.setError(true);
+            break;
     }
     
     return false;

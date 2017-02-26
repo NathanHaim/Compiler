@@ -46,7 +46,9 @@ bool E9::transition(Automate & automate,Symbole *s)
 {
     int value = s->getInfo();
     switch(value){
-        case NUMBER:break;
+        case NUMBER:
+            automate.setError(true);
+            break;
         case PLUS:
         {
             automate.popAndDestroySymbol();
@@ -64,7 +66,9 @@ bool E9::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new Expr(s1->getValue()));
             break;
         }
-        case O_PARENTH:break;
+        case O_PARENTH:
+            automate.setError(true);
+            break;
         case F_PARENTH:
         {
             automate.popAndDestroySymbol();
@@ -81,12 +85,17 @@ bool E9::transition(Automate & automate,Symbole *s)
             automate.reduction(3, new Expr(s1->getValue()));
             break;
         }
-        default://EOF
+        case END://EOF
         {
             automate.popAndDestroySymbol();
             Expr *s1 = (Expr*) automate.popSymbol();
             automate.popAndDestroySymbol();
             automate.reduction(3, new Expr(s1->getValue()));
+            break;
+        }
+        default:
+        {
+            automate.setError(true);
             break;
         }
 
