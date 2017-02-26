@@ -32,8 +32,9 @@ class Automate {
         Etat * CurrentState; 
         std::stack<Symbole*> symbolStack; 
         std::stack<Etat*> statesStack;
+        bool error;
 
-        void setError(bool);
+        
 
     public:
         Automate(Lexer* lex);
@@ -47,6 +48,7 @@ class Automate {
         int sizeSymbolStack();
         void printSymbolStack();
         void printStatesStack();
+        void setError(bool);
 
         //void automate::execute();
 

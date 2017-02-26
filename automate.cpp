@@ -41,8 +41,9 @@ using namespace std;
 //----- Constructeur
 Automate::Automate(Lexer* lex)
 {
-    error = false;
+    
     lexer = lex;
+    this->error = false;
     this->CurrentState = new E0();
     this->statesStack.push(new E0());
     //cout << "Transition du Current State" << endl;
@@ -73,7 +74,8 @@ void Automate::printCurrentState() const
 
 void Automate::decalage(Symbole * s,Etat *e)
 {
-    cout << "Automate::decalage - New Etat : " << e->toString()  << ", New Symbole : " << s->getInfo() << endl;
+    //DEBUG
+    //cout << "Automate::decalage - New Etat : " << e->toString()  << ", New Symbole : " << s->getInfo() << endl;
     this->statesStack.push(e);
     this->CurrentState = e;
     if(s->getInfo() != 46)
@@ -87,41 +89,45 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while( ( ((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1") != 0 ) && (!error))
+    while( ( ((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1") != 0 ) && (!this->error))
     { 
-        cout << "Size : " << lexer->getSize() << endl;
+        //DEBUG
+        //cout << "Size : " << lexer->getSize() << endl;
         if(lexer->getLexed())
         {
+            //DEBUG
             //cout << "Automatte::lecture - Transition" << endl; 
             //cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
             this->CurrentState->transition(*this,symb);
         }
-        else if(strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
-        {
-            cout << "Different E1 "<<endl;
-            this->CurrentState->transition(*this,new End());
-        }
+        
         else
         {
-
+            //(strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
+            //DEBUG
+            //cout << "Different E1 "<<endl;
+            this->CurrentState->transition(*this,new End());
         }
-        cout << "Actual state : " << this->CurrentState->toString() << endl;
+        //DEBUG
+        //cout << "Actual state : " << this->CurrentState->toString() << endl;
         
     }
     if(error)
     {
-        cout << "Syntax error"<< endl;
+        cout << "Syntax Error"<< endl;
     }
     else
     {
-        cout << "End of While" << endl;
-        cout << ((Expr*)symbolStack.top())->getValue() << endl;
+        //DEBUG
+        //cout << "End of While" << endl;
+        cout << "Result : " << ((Expr*)symbolStack.top())->getValue() << endl;
     }
 }
 
 void Automate::reduction(int n,Symbole *s)
 {
-    cout << "Automate::reduction - n : " << n  << " Symbole : " << s->getInfo() << endl;
+    //DEBUG
+    //cout << "Automate::reduction - n : " << n  << " Symbole : " << s->getInfo() << endl;
     for(int i=0;i < n;i++)
     {
         //cout << "Top State : " << this->statesStack.top()->toString() << endl;
@@ -137,9 +143,10 @@ void Automate::reduction(int n,Symbole *s)
 }
 Expr* Automate::popSymbol()
 {
+    //DEBUG
     //cout << "Size : " << symbolStack.size() << endl;
     //cout << this->symbolStack.top()->getInfo() <<endl;
-    cout << "Pop Value : " << ((Expr*)this->symbolStack.top()) ->getValue()<<endl;
+    //cout << "Pop Value : " << ((Expr*)this->symbolStack.top()) ->getValue()<<endl;
     Expr * s = new Expr(*((Expr*)this->symbolStack.top()));
     this->symbolStack.pop();
     return s;
@@ -172,5 +179,5 @@ void Automate::printSymbolStack()
 
 void Automate::setError(bool err)
 {
-    error = err;
+    this->error = err;
 }
