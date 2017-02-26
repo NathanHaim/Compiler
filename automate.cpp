@@ -41,6 +41,7 @@ using namespace std;
 //----- Constructeur
 Automate::Automate(Lexer* lex)
 {
+    error = false;
     lexer = lex;
     this->CurrentState = new E0();
     this->statesStack.push(new E0());
@@ -86,7 +87,7 @@ void Automate::decalage(Symbole * s,Etat *e)
 void Automate::lecture()
 {
     Symbole* symb = NULL;
-    while(((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
+    while( ( ((symb = lexer->getNext()) != NULL) || strcmp(this->CurrentState->toString().c_str(),"E1") != 0 ) && (!error))
     { 
         cout << "Size : " << lexer->getSize() << endl;
         if(lexer->getLexed())
@@ -95,15 +96,27 @@ void Automate::lecture()
             //cout << "Automatte::lecture - Transition Symbole :" << symb->getInfo() << endl;     
             this->CurrentState->transition(*this,symb);
         }
+        else if(strcmp(this->CurrentState->toString().c_str(),"E1") != 0)
+        {
+            cout << "Different E1 "<<endl;
+            this->CurrentState->transition(*this,new End());
+        }
         else
         {
-            this->CurrentState->transition(*this,new End());
+
         }
         cout << "Actual state : " << this->CurrentState->toString() << endl;
         
     }
-    cout << "End of While" << endl;
-    cout << ((Expr*)symbolStack.top())->getValue() << endl;
+    if(error)
+    {
+        cout << "Syntax error"<< endl;
+    }
+    else
+    {
+        cout << "End of While" << endl;
+        cout << ((Expr*)symbolStack.top())->getValue() << endl;
+    }
 }
 
 void Automate::reduction(int n,Symbole *s)
@@ -144,7 +157,6 @@ int Automate::sizeSymbolStack()
 
 void Automate::printSymbolStack()
 {
-    cout << "SymbolStack : " << endl;
     while(!(this->symbolStack.empty()))
     {
         Symbole * s = symbolStack.top();
@@ -157,13 +169,8 @@ void Automate::printSymbolStack()
 
     }
 }
-void Automate::printStatesStack()
+
+void Automate::setError(bool err)
 {
-    cout << "StatesStack : " << endl;
-    while(!(this->statesStack.empty()))
-    {
-        Etat * s = statesStack.top();
-        cout << "Etat : " << s->toString() <<endl;
-        statesStack.pop();
-    }
+    error = err;
 }
