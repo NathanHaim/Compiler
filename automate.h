@@ -33,6 +33,8 @@ class Automate {
         std::stack<Symbole*> symbolStack; 
         std::stack<Etat*> statesStack;
 
+        void setError(bool);
+
     public:
         Automate(Lexer* lex);
         ~Automate();
